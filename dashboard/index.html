@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Cyber Warfare — Live Dashboard</title>
+<style>
+:root {
+  --bg:     #07090F;
+  --navy:   #0B1523;
+  --card:   #0F1C2D;
+  --border: #112032;
+  --blue:   #0E5C8C;
+  --cyan:   #00C8FF;
+  --teal:   #00A896;
+  --red:    #FF3A3A;
+  --orange: #FF5722;
+  --green:  #00E676;
+  --yellow: #FFD600;
+  --muted:  #5A7A8C;
+  --white:  #D8EDF5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:'Segoe UI',monospace;min-height:100vh}
+
+/* Header */
+header{
+  background:var(--navy);
+  border-bottom:2px solid var(--cyan);
+  padding:14px 28px;
+  display:flex;align-items:center;gap:14px;
+  position:sticky;top:0;z-index:100;
+}
+.logo{font-size:18px;font-weight:900;letter-spacing:3px;color:var(--cyan)}
+.sub{font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:2px}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 1.5s infinite;margin-left:auto}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.status-badge{
+  font-size:10px;letter-spacing:1px;padding:4px 12px;border-radius:4px;
+  font-weight:700;margin-left:8px;
+}
+.badge-live{background:#0a2a0a;color:var(--green);border:1px solid var(--green)}
+.badge-idle{background:#2a1a0a;color:var(--orange);border:1px solid var(--orange)}
+
+/* Layout */
+main{padding:20px 28px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px}
+
+/* Cards */
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:8px;padding:18px;position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:100%;height:3px;background:var(--cyan);
+}
+.card.red::before{background:var(--red)}
+.card.teal::before{background:var(--teal)}
+.card.orange::before{background:var(--orange)}
+.card.green::before{background:var(--green)}
+.card.yellow::before{background:var(--yellow)}
+
+.kpi-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.kpi-value{font-size:34px;font-weight:900;line-height:1}
+.kpi-sub{font-size:10px;color:var(--muted);margin-top:5px}
+.card-title{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--white);margin-bottom:14px}
+
+/* Progress bars */
+.prog-row{margin-bottom:12px}
+.prog-header{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px}
+.prog-name{color:var(--white)}
+.prog-pct{color:var(--muted)}
+.prog-track{height:7px;background:var(--border);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;border-radius:4px;transition:width 0.8s ease}
+
+/* Timeline */
+.timeline-wrap{max-height:300px;overflow-y:auto}
+.tl-row{
+  display:grid;
+  grid-template-columns:80px 180px 150px 90px 80px 1fr;
+  gap:8px;align-items:center;
+  padding:6px 10px;border-bottom:1px solid var(--border);
+  font-size:10.5px;font-family:monospace;
+}
+.tl-row:hover{background:var(--navy)}
+.tl-ep{color:var(--muted)}
+.tl-atk{color:var(--red)}
+.tl-def{color:var(--teal)}
+.tl-icon{text-align:center;font-size:13px}
+.tl-status{font-weight:700;font-size:10px}
+.tl-payload{color:var(--muted);font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Reward SVG */
+svg.chart{width:100%;overflow:visible}
+
+/* Agent panels */
+.agent-panel{display:flex;flex-direction:column;gap:8px}
+.ap-row{display:flex;justify-content:space-between;font-size:11px;
+  padding:5px 0;border-bottom:1px solid var(--border)}
+.ap-key{color:var(--muted)}
+.ap-val{color:var(--white);font-weight:700}
+
+/* Recommendations */
+.rec-item{
+  padding:9px 12px;border-radius:5px;font-size:11px;
+  border-left:3px solid var(--muted);background:var(--navy);margin-bottom:8px;
+}
+.rec-CRITICAL{border-color:var(--red);color:#ff7070}
+.rec-HIGH{border-color:var(--orange);color:#ffb74d}
+.rec-WARNING{border-color:var(--yellow);color:var(--yellow)}
+.rec-OK{border-color:var(--green);color:#69f0ae}
+.rec-SUCCESS{border-color:var(--green);color:#69f0ae}
+.rec-INFO{border-color:var(--cyan);color:var(--cyan)}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+
+/* Chain badges */
+.chain-badge{
+  display:inline-block;padding:2px 7px;border-radius:3px;
+  font-size:9px;font-weight:700;margin:2px;
+  background:#112032;color:var(--cyan);border:1px solid #1a3050;
+}
+
+footer{
+  text-align:center;padding:14px;font-size:9px;color:var(--muted);
+  border-top:1px solid var(--border);letter-spacing:1px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">⚔ AI CYBER WAR SIM</div>
+    <div class="sub">AUTONOMOUS BATTLEFIELD INTELLIGENCE DASHBOARD · DVWA INTEGRATION</div>
+  </div>
+  <div class="live-dot" id="live-dot"></div>
+  <div class="status-badge badge-idle" id="status-badge">IDLE</div>
+  <div style="font-size:10px;color:var(--muted);margin-left:12px" id="last-update">–</div>
+</header>
+
+<main>
+
+<!-- KPIs -->
+<div class="grid-4">
+  <div class="card">
+    <div class="kpi-label">Episodes Run</div>
+    <div class="kpi-value" id="kpi-ep">—</div>
+    <div class="kpi-sub">Training sessions</div>
+  </div>
+  <div class="card red">
+    <div class="kpi-label">Attacker Win Rate</div>
+    <div class="kpi-value" id="kpi-atk" style="color:var(--red)">—</div>
+    <div class="kpi-sub">Successful breaches</div>
+  </div>
+  <div class="card teal">
+    <div class="kpi-label">Defender Win Rate</div>
+    <div class="kpi-value" id="kpi-def" style="color:var(--teal)">—</div>
+    <div class="kpi-sub">Blocks + neutralisations</div>
+  </div>
+  <div class="card">
+    <div class="kpi-label">Total Events</div>
+    <div class="kpi-value" id="kpi-steps">—</div>
+    <div class="kpi-sub">Battle actions logged</div>
+  </div>
+</div>
+
+<!-- Reward chart + Attack chains -->
+<div class="grid-2">
+  <div class="card" style="grid-column:1/2">
+    <div class="card-title">📈 REWARD TREND — Per Episode</div>
+    <svg class="chart" height="190" viewBox="0 0 500 180" preserveAspectRatio="none" id="reward-svg">
+      <text x="250" y="90" fill="#1a3050" text-anchor="middle" font-size="12">No data yet — run train.py</text>
+    </svg>
+  </div>
+  <div class="card" style="grid-column:2/3">
+    <div class="card-title">🔗 DETECTED ATTACK CHAINS</div>
+    <div id="chains-wrap" style="font-size:11px;color:var(--muted)">No chains yet</div>
+  </div>
+</div>
+
+<!-- Attack + Defense bars -->
+<div class="grid-2">
+  <div class="card red">
+    <div class="card-title">🔴 ATTACK SUCCESS RATES</div>
+    <div id="atk-bars"></div>
+  </div>
+  <div class="card teal">
+    <div class="card-title">🔵 DEFENSE BLOCK RATES</div>
+    <div id="def-bars"></div>
+  </div>
+</div>
+
+<!-- Agent stats + Recommendations -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">🤖 AGENT STATISTICS</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+      <div>
+        <div style="color:var(--red);font-size:11px;font-weight:700;margin-bottom:10px">⚔ ATTACKER (Red Team)</div>
+        <div class="agent-panel" id="atk-stats"></div>
+      </div>
+      <div>
+        <div style="color:var(--teal);font-size:11px;font-weight:700;margin-bottom:10px">🛡 DEFENDER (Blue Team)</div>
+        <div class="agent-panel" id="def-stats"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card orange">
+    <div class="card-title">💡 FORENSIC RECOMMENDATIONS</div>
+    <div id="recs"></div>
+  </div>
+</div>
+
+<!-- Live timeline -->
+<div class="card" style="margin-bottom:20px">
+  <div class="card-title" style="display:flex;justify-content:space-between">
+    <span>🕵️ LIVE BATTLE TIMELINE</span>
+    <span style="color:var(--muted);font-size:10px" id="timeline-count">—</span>
+  </div>
+  <div class="tl-row" style="color:var(--muted);font-size:9px;border-bottom:2px solid var(--border)">
+    <span>EP / STEP</span><span>ATTACK ACTION</span><span>DEFENSE ACTION</span>
+    <span>RESULT</span><span>REWARDS</span><span>PAYLOAD</span>
+  </div>
+  <div class="timeline-wrap" id="timeline"></div>
+</div>
+
+</main>
+<footer>AI CYBER WARFARE SIMULATION · DVWA INTEGRATION · DIGITAL FORENSICS · v2.0</footer>
+
+<script>
+// ─── API polling ──────────────────────────────────────────────────────────────
+const API_REPORT = "/api/report";
+const API_LIVE   = "/api/live";
+const API_EVENTS = "/api/events";
+const POLL_MS    = 3000;   // poll every 3 seconds
+
+let allEvents = [];
+let reportData = null;
+
+// ─── Progress bars ────────────────────────────────────────────────────────────
+function renderBars(containerId, data, highIsGood=false) {
+  const c = document.getElementById(containerId);
+  if (!c || !data) return;
+  c.innerHTML = Object.entries(data).map(([k,v])=>{
+    const pct = Math.round(v * 100);
+    let color;
+    if (highIsGood)      color = pct>60?"var(--green)":pct>30?"var(--yellow)":"var(--red)";
+    else                 color = pct>60?"var(--red)"  :pct>30?"var(--orange)":"var(--green)";
+    return `<div class="prog-row">
+      <div class="prog-header">
+        <span class="prog-name">${k.replace(/_/g," ")}</span>
+        <span class="prog-pct">${pct}%</span>
+      </div>
+      <div class="prog-track">
+        <div class="prog-fill" style="width:${pct}%;background:${color}"></div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+// ─── Agent stat rows ──────────────────────────────────────────────────────────
+function renderAgent(id, s) {
+  const c = document.getElementById(id);
+  if (!c || !s) return;
+  const rows = [
+    ["Epsilon (ε)", s.epsilon],
+    ["Total steps", (s.total_steps||0).toLocaleString()],
+    ["Wins",       `<span style="color:var(--green)">${(s.total_wins||0).toLocaleString()}</span>`],
+    ["Losses",     `<span style="color:var(--red)">${(s.total_losses||0).toLocaleString()}</span>`],
+    ["Win rate",   `${((s.win_rate||0)*100).toFixed(1)}%`],
+    ["Q-states",  `<span style="color:var(--cyan)">${s.q_states||0}</span>`],
+  ];
+  c.innerHTML = rows.map(([k,v])=>`
+    <div class="ap-row"><span class="ap-key">${k}</span><span class="ap-val">${v}</span></div>
+  `).join("");
+}
+
+// ─── Reward SVG line chart ────────────────────────────────────────────────────
+function renderRewardChart(epRewards) {
+  const svg = document.getElementById("reward-svg");
+  if (!epRewards || epRewards.length < 2) return;
+  const W=500,H=180,pad=24;
+  const atkV = epRewards.map(e=>e.atk);
+  const defV = epRewards.map(e=>e.def);
+  const allV = [...atkV,...defV];
+  const minV = Math.min(...allV)-5;
+  const maxV = Math.max(...allV)+5;
+  const scX = i => pad + (i/(epRewards.length-1))*(W-2*pad);
+  const scY = v => H - pad - ((v-minV)/(maxV-minV))*(H-2*pad);
+  const path = (vals,col) => {
+    const d = vals.map((v,i)=>`${i===0?"M":"L"}${scX(i).toFixed(1)},${scY(v).toFixed(1)}`).join(" ");
+    return `<path d="${d}" fill="none" stroke="${col}" stroke-width="2" opacity="0.9"/>`;
+  };
+  const y0 = scY(0);
+  svg.innerHTML = `
+    <line x1="${pad}" y1="${y0}" x2="${W-pad}" y2="${y0}" stroke="#152030" stroke-width="1" stroke-dasharray="4"/>
+    ${path(atkV,"#FF3A3A")}
+    ${path(defV,"#00A896")}
+    <text x="${W-pad}" y="14" fill="#FF3A3A" font-size="9" text-anchor="end">▶ Attacker</text>
+    <text x="${W-pad}" y="26" fill="#00A896" font-size="9" text-anchor="end">▶ Defender</text>
+  `;
+}
+
+// ─── Recommendations ──────────────────────────────────────────────────────────
+function renderRecs(recs) {
+  const c = document.getElementById("recs");
+  if (!c || !recs) return;
+  c.innerHTML = recs.map(r=>{
+    const level = typeof r === "string" ? "INFO" : r.level;
+    const msg   = typeof r === "string" ? r      : r.message;
+    return `<div class="rec-item rec-${level}">[${level}] ${msg}</div>`;
+  }).join("");
+}
+
+// ─── Attack chains ────────────────────────────────────────────────────────────
+function renderChains(chains) {
+  const c = document.getElementById("chains-wrap");
+  if (!c) return;
+  if (!chains || chains.length === 0) {
+    c.innerHTML = `<span style="color:var(--muted)">No multi-step chains detected yet</span>`;
+    return;
+  }
+  c.innerHTML = chains.slice(0,10).map((chain,i)=>`
+    <div style="margin-bottom:8px">
+      <span style="color:var(--muted);font-size:9px">Chain ${i+1}:</span><br/>
+      ${chain.map(a=>`<span class="chain-badge">${a.replace(/_/g," ")}</span>`).join(" → ")}
+    </div>
+  `).join("");
+}
+
+// ─── Timeline rows ────────────────────────────────────────────────────────────
+function renderTimeline(events) {
+  const c = document.getElementById("timeline");
+  const cnt = document.getElementById("timeline-count");
+  if (!c) return;
+  if (cnt) cnt.textContent = `${events.length} events`;
+  if (!events.length) {
+    c.innerHTML = `<div style="padding:16px;color:var(--muted);text-align:center">Waiting for battle events…</div>`;
+    return;
+  }
+  const rows = [...events].reverse().map(e=>{
+    const icon   = e.attack_succeeded ? "✅" : e.was_blocked ? "🛡️" : "❌";
+    const status = e.attack_succeeded ? "BREACH"  : e.was_blocked ? "BLOCKED" : "MISSED";
+    const scol   = e.attack_succeeded ? "var(--red)" : e.was_blocked ? "var(--teal)" : "var(--muted)";
+    const atk_r  = e.atk_reward != null ? (e.atk_reward>=0?`+${e.atk_reward}`:e.atk_reward) : "—";
+    const def_r  = e.def_reward != null ? (e.def_reward>=0?`+${e.def_reward}`:e.def_reward) : "—";
+    const payload = (e.atk_payload||"").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    return `<div class="tl-row">
+      <span class="tl-ep">Ep${e.episode||"?"}/S${e.step||"?"}</span>
+      <span class="tl-atk">${(e.atk_action||"").replace(/_/g," ")}</span>
+      <span class="tl-def">${(e.def_action||"").replace(/_/g," ")}</span>
+      <span class="tl-icon">${icon} <span class="tl-status" style="color:${scol}">${status}</span></span>
+      <span style="font-size:9px;color:var(--muted)">A:${atk_r} D:${def_r}</span>
+      <span class="tl-payload" title="${payload}">${payload||"—"}</span>
+    </div>`;
+  }).join("");
+  c.innerHTML = rows;
+}
+
+// ─── Full render from report ──────────────────────────────────────────────────
+function renderReport(report) {
+  if (!report || report.error) return;
+  reportData = report;
+  const p   = report.patterns || {};
+  const meta= report.meta     || {};
+
+  document.getElementById("kpi-ep").textContent    = meta.total_episodes ?? "—";
+  document.getElementById("kpi-steps").textContent = (meta.total_steps||0).toLocaleString();
+  document.getElementById("kpi-atk").textContent   = p.overall_atk_win_rate != null
+    ? (p.overall_atk_win_rate*100).toFixed(1)+"%" : "—";
+  document.getElementById("kpi-def").textContent   = p.overall_def_win_rate != null
+    ? (p.overall_def_win_rate*100).toFixed(1)+"%" : "—";
+
+  renderBars("atk-bars", p.attack_success_rates, false);
+  renderBars("def-bars", p.defense_block_rates,  true);
+  renderAgent("atk-stats", report.attacker_stats);
+  renderAgent("def-stats",  report.defender_stats);
+  renderRecs(report.recommendations);
+  renderChains(report.attack_chains);
+
+  if (p.episode_rewards) renderRewardChart(p.episode_rewards);
+}
+
+// ─── Status indicator ─────────────────────────────────────────────────────────
+let lastEventCount = 0;
+function updateStatus(events) {
+  const badge = document.getElementById("status-badge");
+  const dot   = document.getElementById("live-dot");
+  const ts    = document.getElementById("last-update");
+  ts.textContent = "Updated: " + new Date().toLocaleTimeString();
+
+  if (events.length > lastEventCount) {
+    badge.textContent = "LIVE";
+    badge.className   = "status-badge badge-live";
+    dot.style.background = "var(--green)";
+    lastEventCount = events.length;
+  } else {
+    badge.textContent = "IDLE";
+    badge.className   = "status-badge badge-idle";
+    dot.style.background = "var(--orange)";
+  }
+}
+
+// ─── Polling loop ─────────────────────────────────────────────────────────────
+async function poll() {
+  try {
+    // Get all events for timeline
+    const evRes = await fetch(API_EVENTS);
+    const events = await evRes.json();
+    allEvents = events;
+    renderTimeline(events);
+    updateStatus(events);
+  } catch(e) { /* server not running yet */ }
+
+  try {
+    const repRes = await fetch(API_REPORT);
+    const report = await repRes.json();
+    renderReport(report);
+  } catch(e) { /* no report yet */ }
+}
+
+// Initial load + start polling
+poll();
+setInterval(poll, POLL_MS);
+</script>
+</body>
+</html>

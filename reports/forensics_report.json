@@ -1,0 +1,1763 @@
+{
+  "meta": {
+    "generated_at": "2026-03-27T00:55:42.286630+00:00",
+    "simulation_time_s": 1583.8,
+    "total_episodes": 300,
+    "total_steps": 7500
+  },
+  "attacker_stats": {
+    "name": "AttackerAgent",
+    "epsilon": 0.22229,
+    "total_steps": 7500,
+    "total_wins": 267,
+    "total_losses": 7233,
+    "win_rate": 0.0356,
+    "q_states": 581
+  },
+  "defender_stats": {
+    "name": "DefenderAgent",
+    "epsilon": 0.22229,
+    "total_steps": 7500,
+    "total_wins": 7233,
+    "total_losses": 267,
+    "win_rate": 0.9644,
+    "q_states": 581
+  },
+  "patterns": {
+    "total_events": 7500,
+    "total_successes": 267,
+    "total_blocked": 7219,
+    "overall_atk_win_rate": 0.0356,
+    "overall_def_win_rate": 0.9625,
+    "attack_usage_counts": {
+      "xss_reflected": 1017,
+      "sqli_union": 1122,
+      "cmd_injection": 846,
+      "brute_force": 948,
+      "xss_stored": 874,
+      "sqli_boolean_blind": 964,
+      "csrf_probe": 845,
+      "file_inclusion": 884
+    },
+    "defense_usage_counts": {
+      "block_ip": 612,
+      "waf_rule_sqli": 989,
+      "allow": 1225,
+      "honeypot_redirect": 868,
+      "reset_session": 790,
+      "waf_rule_xss": 882,
+      "alert_only": 1120,
+      "rate_limit": 1014
+    },
+    "attack_success_rates": {
+      "sqli_union": 0.033,
+      "sqli_boolean_blind": 0.0083,
+      "xss_reflected": 0.0393,
+      "xss_stored": 0.0206,
+      "cmd_injection": 0.0,
+      "file_inclusion": 0.0543,
+      "brute_force": 0.0865,
+      "csrf_probe": 0.0402
+    },
+    "defense_block_rates": {
+      "allow": 0.9633,
+      "block_ip": 1.0,
+      "rate_limit": 0.9349,
+      "honeypot_redirect": 1.0,
+      "waf_rule_sqli": 0.9596,
+      "waf_rule_xss": 0.9535,
+      "reset_session": 0.9354,
+      "alert_only": 0.9661
+    },
+    "most_used_attack": [
+      "sqli_union",
+      1122
+    ],
+    "most_used_defense": [
+      "allow",
+      1225
+    ],
+    "most_successful_attack": [
+      "brute_force",
+      82
+    ],
+    "most_effective_defense": [
+      "allow",
+      1180
+    ],
+    "attack_chains_detected": 82,
+    "avg_chain_length": 2.59,
+    "avg_atk_response_ms": 6.8,
+    "avg_def_response_ms": 203.1,
+    "episode_rewards": [
+      {
+        "ep": 1,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 2,
+        "atk": -38,
+        "def": 230
+      },
+      {
+        "ep": 3,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 4,
+        "atk": -26,
+        "def": 215
+      },
+      {
+        "ep": 5,
+        "atk": -2,
+        "def": 187
+      },
+      {
+        "ep": 6,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 7,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 8,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 9,
+        "atk": -50,
+        "def": 245
+      },
+      {
+        "ep": 10,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 11,
+        "atk": -50,
+        "def": 245
+      },
+      {
+        "ep": 12,
+        "atk": -37,
+        "def": 225
+      },
+      {
+        "ep": 13,
+        "atk": 34,
+        "def": 142
+      },
+      {
+        "ep": 14,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 15,
+        "atk": -2,
+        "def": 188
+      },
+      {
+        "ep": 16,
+        "atk": -14,
+        "def": 203
+      },
+      {
+        "ep": 17,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 18,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 19,
+        "atk": -26,
+        "def": 216
+      },
+      {
+        "ep": 20,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 21,
+        "atk": 48,
+        "def": 111
+      },
+      {
+        "ep": 22,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 23,
+        "atk": -50,
+        "def": 246
+      },
+      {
+        "ep": 24,
+        "atk": -14,
+        "def": 200
+      },
+      {
+        "ep": 25,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 26,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 27,
+        "atk": 47,
+        "def": 117
+      },
+      {
+        "ep": 28,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 29,
+        "atk": -50,
+        "def": 246
+      },
+      {
+        "ep": 30,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 31,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 32,
+        "atk": -14,
+        "def": 201
+      },
+      {
+        "ep": 33,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 34,
+        "atk": -25,
+        "def": 210
+      },
+      {
+        "ep": 35,
+        "atk": -14,
+        "def": 202
+      },
+      {
+        "ep": 36,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 37,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 38,
+        "atk": 11,
+        "def": 163
+      },
+      {
+        "ep": 39,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 40,
+        "atk": -50,
+        "def": 243
+      },
+      {
+        "ep": 41,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 42,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 43,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 44,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 45,
+        "atk": -14,
+        "def": 202
+      },
+      {
+        "ep": 46,
+        "atk": -14,
+        "def": 202
+      },
+      {
+        "ep": 47,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 48,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 49,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 50,
+        "atk": -50,
+        "def": 245
+      },
+      {
+        "ep": 51,
+        "atk": -14,
+        "def": 204
+      },
+      {
+        "ep": 52,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 53,
+        "atk": -26,
+        "def": 216
+      },
+      {
+        "ep": 54,
+        "atk": -50,
+        "def": 246
+      },
+      {
+        "ep": 55,
+        "atk": -14,
+        "def": 202
+      },
+      {
+        "ep": 56,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 57,
+        "atk": -38,
+        "def": 231
+      },
+      {
+        "ep": 58,
+        "atk": -50,
+        "def": 245
+      },
+      {
+        "ep": 59,
+        "atk": 11,
+        "def": 164
+      },
+      {
+        "ep": 60,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 61,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 62,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 63,
+        "atk": -38,
+        "def": 230
+      },
+      {
+        "ep": 64,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 65,
+        "atk": -14,
+        "def": 203
+      },
+      {
+        "ep": 66,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 67,
+        "atk": -14,
+        "def": 201
+      },
+      {
+        "ep": 68,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 69,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 70,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 71,
+        "atk": -38,
+        "def": 230
+      },
+      {
+        "ep": 72,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 73,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 74,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 75,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 76,
+        "atk": -14,
+        "def": 202
+      },
+      {
+        "ep": 77,
+        "atk": -25,
+        "def": 209
+      },
+      {
+        "ep": 78,
+        "atk": -14,
+        "def": 203
+      },
+      {
+        "ep": 79,
+        "atk": -50,
+        "def": 246
+      },
+      {
+        "ep": 80,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 81,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 82,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 83,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 84,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 85,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 86,
+        "atk": -14,
+        "def": 201
+      },
+      {
+        "ep": 87,
+        "atk": -14,
+        "def": 198
+      },
+      {
+        "ep": 88,
+        "atk": -50,
+        "def": 246
+      },
+      {
+        "ep": 89,
+        "atk": -14,
+        "def": 204
+      },
+      {
+        "ep": 90,
+        "atk": -37,
+        "def": 225
+      },
+      {
+        "ep": 91,
+        "atk": -25,
+        "def": 209
+      },
+      {
+        "ep": 92,
+        "atk": -14,
+        "def": 203
+      },
+      {
+        "ep": 93,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 94,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 95,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 96,
+        "atk": -50,
+        "def": 246
+      },
+      {
+        "ep": 97,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 98,
+        "atk": -26,
+        "def": 219
+      },
+      {
+        "ep": 99,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 100,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 101,
+        "atk": -26,
+        "def": 216
+      },
+      {
+        "ep": 102,
+        "atk": -2,
+        "def": 186
+      },
+      {
+        "ep": 103,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 104,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 105,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 106,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 107,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 108,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 109,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 110,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 111,
+        "atk": -38,
+        "def": 232
+      },
+      {
+        "ep": 112,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 113,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 114,
+        "atk": -26,
+        "def": 215
+      },
+      {
+        "ep": 115,
+        "atk": -26,
+        "def": 216
+      },
+      {
+        "ep": 116,
+        "atk": -14,
+        "def": 200
+      },
+      {
+        "ep": 117,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 118,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 119,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 120,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 121,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 122,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 123,
+        "atk": -14,
+        "def": 202
+      },
+      {
+        "ep": 124,
+        "atk": -38,
+        "def": 232
+      },
+      {
+        "ep": 125,
+        "atk": 12,
+        "def": 156
+      },
+      {
+        "ep": 126,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 127,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 128,
+        "atk": -38,
+        "def": 232
+      },
+      {
+        "ep": 129,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 130,
+        "atk": -26,
+        "def": 216
+      },
+      {
+        "ep": 131,
+        "atk": -14,
+        "def": 201
+      },
+      {
+        "ep": 132,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 133,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 134,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 135,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 136,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 137,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 138,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 139,
+        "atk": -14,
+        "def": 202
+      },
+      {
+        "ep": 140,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 141,
+        "atk": -14,
+        "def": 199
+      },
+      {
+        "ep": 142,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 143,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 144,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 145,
+        "atk": -26,
+        "def": 219
+      },
+      {
+        "ep": 146,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 147,
+        "atk": -1,
+        "def": 177
+      },
+      {
+        "ep": 148,
+        "atk": -38,
+        "def": 231
+      },
+      {
+        "ep": 149,
+        "atk": -38,
+        "def": 231
+      },
+      {
+        "ep": 150,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 151,
+        "atk": -2,
+        "def": 189
+      },
+      {
+        "ep": 152,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 153,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 154,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 155,
+        "atk": -37,
+        "def": 224
+      },
+      {
+        "ep": 156,
+        "atk": -38,
+        "def": 232
+      },
+      {
+        "ep": 157,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 158,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 159,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 160,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 161,
+        "atk": -38,
+        "def": 231
+      },
+      {
+        "ep": 162,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 163,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 164,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 165,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 166,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 167,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 168,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 169,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 170,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 171,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 172,
+        "atk": -38,
+        "def": 232
+      },
+      {
+        "ep": 173,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 174,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 175,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 176,
+        "atk": -14,
+        "def": 204
+      },
+      {
+        "ep": 177,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 178,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 179,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 180,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 181,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 182,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 183,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 184,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 185,
+        "atk": -38,
+        "def": 232
+      },
+      {
+        "ep": 186,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 187,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 188,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 189,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 190,
+        "atk": -26,
+        "def": 219
+      },
+      {
+        "ep": 191,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 192,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 193,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 194,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 195,
+        "atk": -26,
+        "def": 219
+      },
+      {
+        "ep": 196,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 197,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 198,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 199,
+        "atk": -38,
+        "def": 232
+      },
+      {
+        "ep": 200,
+        "atk": -50,
+        "def": 246
+      },
+      {
+        "ep": 201,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 202,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 203,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 204,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 205,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 206,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 207,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 208,
+        "atk": -14,
+        "def": 204
+      },
+      {
+        "ep": 209,
+        "atk": -50,
+        "def": 246
+      },
+      {
+        "ep": 210,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 211,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 212,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 213,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 214,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 215,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 216,
+        "atk": -26,
+        "def": 217
+      },
+      {
+        "ep": 217,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 218,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 219,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 220,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 221,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 222,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 223,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 224,
+        "atk": -50,
+        "def": 247
+      },
+      {
+        "ep": 225,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 226,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 227,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 228,
+        "atk": -14,
+        "def": 203
+      },
+      {
+        "ep": 229,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 230,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 231,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 232,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 233,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 234,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 235,
+        "atk": -14,
+        "def": 204
+      },
+      {
+        "ep": 236,
+        "atk": -38,
+        "def": 233
+      },
+      {
+        "ep": 237,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 238,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 239,
+        "atk": -2,
+        "def": 188
+      },
+      {
+        "ep": 240,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 241,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 242,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 243,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 244,
+        "atk": -26,
+        "def": 219
+      },
+      {
+        "ep": 245,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 246,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 247,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 248,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 249,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 250,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 251,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 252,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 253,
+        "atk": -26,
+        "def": 218
+      },
+      {
+        "ep": 254,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 255,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 256,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 257,
+        "atk": -50,
+        "def": 245
+      },
+      {
+        "ep": 258,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 259,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 260,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 261,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 262,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 263,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 264,
+        "atk": -26,
+        "def": 219
+      },
+      {
+        "ep": 265,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 266,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 267,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 268,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 269,
+        "atk": -38,
+        "def": 232
+      },
+      {
+        "ep": 270,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 271,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 272,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 273,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 274,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 275,
+        "atk": -2,
+        "def": 186
+      },
+      {
+        "ep": 276,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 277,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 278,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 279,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 280,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 281,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 282,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 283,
+        "atk": -38,
+        "def": 234
+      },
+      {
+        "ep": 284,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 285,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 286,
+        "atk": -50,
+        "def": 250
+      },
+      {
+        "ep": 287,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 288,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 289,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 290,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 291,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 292,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 293,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 294,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 295,
+        "atk": -26,
+        "def": 219
+      },
+      {
+        "ep": 296,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 297,
+        "atk": -50,
+        "def": 249
+      },
+      {
+        "ep": 298,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 299,
+        "atk": -50,
+        "def": 248
+      },
+      {
+        "ep": 300,
+        "atk": -50,
+        "def": 250
+      }
+    ]
+  },
+  "attack_chains": [
+    [
+      "xss_reflected",
+      "file_inclusion"
+    ],
+    [
+      "brute_force",
+      "csrf_probe",
+      "sqli_union",
+      "xss_reflected"
+    ],
+    [
+      "brute_force",
+      "file_inclusion",
+      "brute_force",
+      "xss_stored",
+      "sqli_union",
+      "xss_reflected",
+      "brute_force"
+    ],
+    [
+      "xss_reflected",
+      "file_inclusion",
+      "csrf_probe",
+      "brute_force"
+    ],
+    [
+      "brute_force",
+      "csrf_probe",
+      "file_inclusion"
+    ],
+    [
+      "brute_force",
+      "file_inclusion"
+    ],
+    [
+      "brute_force",
+      "brute_force"
+    ],
+    [
+      "sqli_union",
+      "file_inclusion"
+    ],
+    [
+      "sqli_union",
+      "xss_stored"
+    ],
+    [
+      "csrf_probe",
+      "xss_stored",
+      "sqli_union"
+    ],
+    [
+      "brute_force",
+      "sqli_union",
+      "xss_stored"
+    ],
+    [
+      "brute_force",
+      "sqli_union",
+      "sqli_boolean_blind"
+    ],
+    [
+      "xss_reflected",
+      "file_inclusion"
+    ],
+    [
+      "csrf_probe",
+      "xss_stored",
+      "file_inclusion"
+    ],
+    [
+      "csrf_probe",
+      "xss_stored"
+    ],
+    [
+      "xss_stored",
+      "file_inclusion"
+    ],
+    [
+      "brute_force",
+      "xss_stored"
+    ],
+    [
+      "xss_reflected",
+      "sqli_boolean_blind",
+      "file_inclusion"
+    ],
+    [
+      "brute_force",
+      "xss_reflected",
+      "sqli_boolean_blind"
+    ],
+    [
+      "sqli_union",
+      "xss_stored"
+    ]
+  ],
+  "recommendations": [
+    {
+      "level": "OK",
+      "message": "'sqli_union' well-contained at 3% \u2014 current defense is effective."
+    },
+    {
+      "level": "OK",
+      "message": "'sqli_boolean_blind' well-contained at 1% \u2014 current defense is effective."
+    },
+    {
+      "level": "OK",
+      "message": "'xss_reflected' well-contained at 4% \u2014 current defense is effective."
+    },
+    {
+      "level": "OK",
+      "message": "'xss_stored' well-contained at 2% \u2014 current defense is effective."
+    },
+    {
+      "level": "OK",
+      "message": "'cmd_injection' well-contained at 0% \u2014 current defense is effective."
+    },
+    {
+      "level": "OK",
+      "message": "'file_inclusion' well-contained at 5% \u2014 current defense is effective."
+    },
+    {
+      "level": "OK",
+      "message": "'brute_force' well-contained at 9% \u2014 current defense is effective."
+    },
+    {
+      "level": "OK",
+      "message": "'csrf_probe' well-contained at 4% \u2014 current defense is effective."
+    },
+    {
+      "level": "INFO",
+      "message": "'allow' is most effective defense (96% block rate) \u2014 prioritise this."
+    },
+    {
+      "level": "INFO",
+      "message": "'block_ip' is most effective defense (100% block rate) \u2014 prioritise this."
+    },
+    {
+      "level": "INFO",
+      "message": "'rate_limit' is most effective defense (93% block rate) \u2014 prioritise this."
+    },
+    {
+      "level": "INFO",
+      "message": "'honeypot_redirect' is most effective defense (100% block rate) \u2014 prioritise this."
+    },
+    {
+      "level": "INFO",
+      "message": "'waf_rule_sqli' is most effective defense (96% block rate) \u2014 prioritise this."
+    },
+    {
+      "level": "INFO",
+      "message": "'waf_rule_xss' is most effective defense (95% block rate) \u2014 prioritise this."
+    },
+    {
+      "level": "INFO",
+      "message": "'reset_session' is most effective defense (94% block rate) \u2014 prioritise this."
+    },
+    {
+      "level": "INFO",
+      "message": "'alert_only' is most effective defense (97% block rate) \u2014 prioritise this."
+    },
+    {
+      "level": "SUCCESS",
+      "message": "Defender is winning \u2014 consider raising security level in DVWA for next run."
+    }
+  ]
+}
