@@ -1,4 +1,4 @@
-# AI Cyber Warfare Simulation v2.0
+# AI Cyber Warfare Simulation 
 ### Autonomous Cyber Battlefield Simulator — DVWA Integration
 
 ---
